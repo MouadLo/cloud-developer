@@ -6,7 +6,7 @@ env:
   - DOCKER_COMPOSE_VERSION=1.23.2
 
 before_install:
-  - docker -v && docker-compose -v 
+  - docker -v && docker-compose -v
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
@@ -15,5 +15,8 @@ before_install:
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
 
+
+
 install:
-    - echo 'Cloud Builders'
+  - docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel 
+
